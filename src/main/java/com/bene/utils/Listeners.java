@@ -39,7 +39,16 @@ public class Listeners extends TestListenerAdapter {
             
     }
     
-    
+    public void onTestSuccess(ITestResult result)
+    {
+    //test=extent.createTest(result.getClass().getName());
+    //test.createNode(result.getName());
+    test=extent.createTest(result.getName()); // create new entry in th report
+
+    test.log(Status.PASS, "Test Case PASSED IS " + result.getName());
+
+    }
+
     
     public void onTestFailure(ITestResult result)
     {
@@ -50,7 +59,17 @@ public class Listeners extends TestListenerAdapter {
     
     }
     
-   
+    public void onTestSkipped(ITestResult result)
+    {
+    test=extent.createTest(result.getName()); // create new entry in th report
+    test.log(Status.SKIP, "Test Case SKIPPED IS " + result.getName());
+    }
+
+    public void onFinish(ITestContext testContext)
+    {
+    extent.flush();
+    }
+
     
     
     

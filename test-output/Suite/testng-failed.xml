@@ -11,11 +11,6 @@
           <include name="accountcreate"/>
         </methods>
       </class> <!-- com.bene.testcases.CreateAccountTest -->
-      <class name="com.bene.testcases.OpenAccounTest">
-        <methods>
-          <include name="clickAccount"/>
-        </methods>
-      </class> <!-- com.bene.testcases.OpenAccounTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

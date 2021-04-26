@@ -2,11 +2,14 @@ package com.bene.base;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -25,7 +28,7 @@ public class TestBase {
         {
 		try {
 			prop =new Properties();
-			FileInputStream fis = new FileInputStream("C:\\Users\\Conduent\\eclipse-workspace\\Projct\\src\\main\\java\\com\\bene\\config\\config.properties");
+			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//Properties//config.properties");
 			prop.load(fis);
 		}
 		catch (IOException e )
@@ -42,17 +45,36 @@ public class TestBase {
 		  
 		  driver.manage().window().maximize();
 		  driver.manage().deleteAllCookies();
-		  driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+		 
 		  
-		  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		  
 		  driver.get(prop.getProperty("url"));
 		  driver.findElement(By.xpath(prop.getProperty("signin"))).click();
 		 
 		   tp =new TopPage(driver);
 		}
+		
+		
           
 	}
+	
+	public  void dropdownselect(List<WebElement> e , String value )
+	{   String text ="";
+	    for(WebElement e1:e)
+       {
+		
+		System.out.println(e1.getText());
+		if(e1.getText().equals(value))
+		{
+			e1.click();
+			//text= e.getAttribute("aria-activedescendant");
+			break;
+		}
+	   }
+		
+	
+  }
 	
 
 
